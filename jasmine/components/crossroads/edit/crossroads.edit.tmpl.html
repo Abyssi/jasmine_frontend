@@ -1,0 +1,62 @@
+<div class="container row p-0 m-0">
+    <div class="container p-0 {{crossroadsEditController.doubled ? 'col-6 sidebar-sticky' : ''}}">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Crossroads Details</span>
+        </h6>
+        <span class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 pb-4 text-white small border-bottom">{{crossroadsEditController.crossroads.id}}</span>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Semaphores</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item {{crossroadsEditController.editingIndex.toString() === semaphore.semaphoreId ? 'active' : ''}}"
+                ng-repeat="semaphore in crossroadsEditController.crossroads.semaphores"
+                ng-click="crossroadsEditController.editSemaphore(semaphore)">
+                <div class="nav-link side-link">
+                    <span class="small">{{semaphore.semaphoreId}}</span>
+                    <button type="button" class="btn btn-danger btn-sm text-uppercase float-right"
+                            ng-click="crossroadsEditController.deleteSemaphore(semaphore)">Delete
+                    </button>
+                </div>
+            </li>
+            <li class="side-item">
+                <a class="nav-link side-link text-uppercase text-muted text-center font-weight-bold small" href=""
+                   ng-click="crossroadsEditController.newSemaphore()">
+                    Add new
+                </a>
+            </li>
+        </ul>
+
+        <div class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bottom">
+            <button class="btn btn-lg btn-primary text-uppercase col" ng-click="crossroadsEditController.save()">Save
+            </button>
+        </div>
+    </div>
+
+    <div class="container p-0 col-6 sidebar-sticky" ng-if="crossroadsEditController.doubled">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Edit Semaphore</span>
+        </h6>
+
+        <div class="px-3 mt-4 mb-1">
+            <div class="form-group">
+                <label class="text-white text-uppercase small" for="inputLatitude">Latitude</label>
+                <input type="text" class="form-control form-control-dark form-control-sm" id="inputLatitude"
+                       placeholder="Latitude"
+                       ng-model="crossroadsEditController.crossroads.semaphores[crossroadsEditController.editingIndex].location.latitude">
+            </div>
+            <div class="form-group">
+                <label class="text-white text-uppercase small" for="inputLongitude">Longitude</label>
+                <input type="text" class="form-control form-control-dark form-control-sm" id="inputLongitude"
+                       placeholder="Longitude"
+                       ng-model="crossroadsEditController.crossroads.semaphores[crossroadsEditController.editingIndex].location.longitude">
+            </div>
+            <div class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bottom"
+                 ng-if="crossroadsEditController.isDamaged(crossroadsEditController.crossroads.semaphores[crossroadsEditController.editingIndex])">
+                <button class="btn btn-lg btn-primary text-uppercase col"
+                        ng-click="crossroadsEditController.restore(crossroadsEditController.crossroads.semaphores[crossroadsEditController.editingIndex])">
+                    Restore
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

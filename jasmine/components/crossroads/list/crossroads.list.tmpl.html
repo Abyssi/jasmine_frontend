@@ -1,0 +1,22 @@
+<div class="container p-0">
+    <div class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <a class="btn btn-lg btn-primary text-uppercase col" href="#/crossroads/create">Add crossroads</a>
+    </div>
+    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>Crossroads List</span>
+    </h6>
+    <ul id="sidebarContent" class="nav flex-column border-bottom">
+        <li class="side-item" ng-repeat="crossroads in crossroadsListController.crossroadsList">
+            <a class="nav-link side-link" href="#/crossroads/details/{{crossroads.id}}">
+                <span class="small">{{crossroads.id}}</span>
+            </a>
+        </li>
+        <li class="side-item">
+            <a class="nav-link side-link text-uppercase text-muted text-center font-weight-bold small" href=""
+               ng-click="crossroadsListController.loadMore()">
+                Load More
+            </a>
+        </li>
+    </ul>
+</div>
+

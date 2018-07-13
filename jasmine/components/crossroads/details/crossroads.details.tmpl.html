@@ -1,0 +1,49 @@
+<div class="container row p-0 m-0">
+    <div class="container p-0 {{crossroadsDetailsController.doubled ? 'col-6 sidebar-sticky' : ''}}">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Crossroads Details</span>
+        </h6>
+        <span class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 pb-4 text-white small border-bottom">{{crossroadsDetailsController.crossroads.id}}</span>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Semaphores</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item {{crossroadsDetailsController.showingIndex.toString() === semaphore.semaphoreId ? 'active' : ''}}"
+                ng-repeat="semaphore in crossroadsDetailsController.crossroads.semaphores">
+                <a class="nav-link side-link" href="" ng-click="crossroadsDetailsController.showSemaphore(semaphore)">
+                    <span class="small">{{semaphore.semaphoreId}}</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bottom">
+            <a class="btn btn-lg btn-primary text-uppercase col"
+               href="#/crossroads/edit/{{crossroadsDetailsController.crossroads.id}}">Edit</a>
+        </div>
+    </div>
+
+    <div class="container p-0 col-6 sidebar-sticky" ng-if="crossroadsDetailsController.doubled">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Create Semaphore</span>
+        </h6>
+
+        <div class="px-3 mt-4 mb-1">
+            <div class="form-group">
+                <label class="text-white text-uppercase small" for="inputLatitude">Latitude</label>
+                <input type="text" class="form-control form-control-dark form-control-sm" disabled id="inputLatitude"
+                       placeholder="Latitude"
+                       ng-model="crossroadsDetailsController.crossroads.semaphores[crossroadsDetailsController.showingIndex].location.latitude">
+            </div>
+            <div class="form-group">
+                <label class="text-white text-uppercase small" for="inputLongitude">Longitude</label>
+                <input type="text" class="form-control form-control-dark form-control-sm" disabled id="inputLongitude"
+                       placeholder="Longitude"
+                       ng-model="crossroadsDetailsController.crossroads.semaphores[crossroadsDetailsController.showingIndex].location.longitude">
+            </div>
+            <div class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bottom"
+                 ng-if="crossroadsDetailsController.isDamaged(crossroadsDetailsController.crossroads.semaphores[crossroadsDetailsController.showingIndex])">
+                <span class="text-danger text-uppercase small col text-center">Damaged</span>
+            </div>
+        </div>
+    </div>
+</div>

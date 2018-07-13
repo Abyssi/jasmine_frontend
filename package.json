@@ -1,0 +1,23 @@
+{
+  "name": "jasmine_frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "JASMINE Frontend",
+  "repository": "https://github.com/Abyssi/jasmine_frontend",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "latest",
+    "gulp": "latest",
+    "gulp-minifier": "latest",
+    "gulp-concat": "latest"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "update-deps": "npm update",
+    "postupdate-deps": "bower update",
+    "prestart": "npm install"
+  },
+  "dependencies": {
+    "npm": "^6.1.0"
+  }
+}

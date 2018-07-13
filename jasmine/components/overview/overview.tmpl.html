@@ -1,0 +1,114 @@
+<div class="container row p-0 m-0">
+    <div class="container p-0 {{overviewController.doubled ? 'col-6 sidebar-sticky' : ''}}">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Top Crossroads</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item {{overviewController.topCrossroadsWindow === overviewController.websocket_small_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startTopCrossroads(overviewController.websocket_small_window)">
+                    Last 15 Minutes
+                </a>
+            </li>
+            <li class="side-item {{overviewController.topCrossroadsWindow === overviewController.websocket_medium_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startTopCrossroads(overviewController.websocket_medium_window)">
+                    Last Hour
+                </a>
+            </li>
+            <li class="side-item {{overviewController.topCrossroadsWindow === overviewController.websocket_large_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startTopCrossroads(overviewController.websocket_large_window)">
+                    Last Day
+                </a>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Outlier Crossroads</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item {{overviewController.outlierCrossroadsWindow === overviewController.websocket_small_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startOutlierCrossroads(overviewController.websocket_small_window)">
+                    Last 15 Minutes
+                </a>
+            </li>
+            <li class="side-item {{overviewController.outlierCrossroadsWindow === overviewController.websocket_medium_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startOutlierCrossroads(overviewController.websocket_medium_window)">
+                    Last Hour
+                </a>
+            </li>
+            <li class="side-item {{overviewController.outlierCrossroadsWindow === overviewController.websocket_large_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startOutlierCrossroads(overviewController.websocket_large_window)">
+                    Last Day
+                </a>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Top Routes</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item {{overviewController.topRouteWindow === overviewController.websocket_top_semaphore_route_window ? 'active' : ''}}">
+                <a class="nav-link side-link" href=""
+                   ng-click="overviewController.startTopRoute(overviewController.websocket_top_semaphore_route_window)">
+                    Last 5 Minutes
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container p-0 col-6 sidebar-sticky"
+         ng-if="overviewController.doubled && overviewController.showing === 'TOP_CROSSROADS'">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Top crossroads</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item"
+                ng-repeat="crossroads in overviewController.topCrossroadsList">
+                <a class="nav-link side-link" href="#/crossroads/details/{{crossroads.id}}">
+                    <span class="small">{{crossroads.id}}</span>
+                    <span class="small">{{crossroads.averageSpeed | round:2}} km/h</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container p-0 col-6 sidebar-sticky"
+         ng-if="overviewController.doubled && overviewController.showing === 'OUTLIER_CROSSROADS'">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Outlier crossroads</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item"
+                ng-repeat="crossroads in overviewController.outlierCrossroadsList">
+                <a class="nav-link side-link" href="#/crossroads/details/{{crossroads.data.id}}">
+                    <span class="small">{{crossroads.data.id}}</span>
+                    <span class="small">{{crossroads.data.medianVehiclesCount | round:2}} cars</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container p-0 col-6 sidebar-sticky"
+         ng-if="overviewController.doubled && overviewController.showing === 'TOP_ROUTE'">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Top route</span>
+        </h6>
+        <ul class="nav flex-column border-bottom">
+            <li class="side-item" ng-repeat="route in overviewController.topRouteList">
+                <ul class="nav flex-column border-bottom">
+                    <li class="side-item" ng-repeat="semaphore in route">
+                        <a class="nav-link side-link"
+                           href="#/crossroads/details/{{semaphore.id}}/{{semaphore.semaphoreId}}">
+                            <span class="small">{{semaphore.id}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

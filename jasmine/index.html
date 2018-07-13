@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="JASMINE">
+    <meta name="author" content="JASMINE">
+    <title>JASMINE</title>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
+    <link rel="icon" sizes="196x196" href="assets/img/favicon-196.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+
+<body ng-controller="defaultController as defaultController">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow-sm border-bottom">
+
+    <a class="navbar-brand col-2 d-md-block" href="#">
+        <img src="assets/img/reduced_wifi_semaphore_white.svg" width="26" height="30"
+             class="d-inline-block align-top mr-3" alt="">
+        JASMINE
+    </a>
+
+    <a href="" class="navbar-icon pull-right d-lg-none mx-2 col-1" id="nav-btn" data-target="#navbar-list"
+       data-toggle="collapse" aria-expanded="true"><i class="fa fa-bars fa-2x fa-lg text-white"></i></a>
+
+    <div id="navbar-list" class="navbar-collapse collapse">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item dropdown active">
+                <a class="nav-link" href="#/overview">
+                    Overview
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+                    Data
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#/crossroads/list">Crossroads</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+                    Alerts <span class="badge badge-light" ng-if="defaultController.damagedSemaphoreList.length > 0">{{defaultController.damagedSemaphoreList.length}}</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a ng-repeat="semaphore in defaultController.damagedSemaphoreList" class="dropdown-item"
+                       href="#/crossroads/details/{{semaphore.crossroads.id}}/{{semaphore.semaphoreId}}">
+                        <span class="row">Damaged semaphore</span>
+                        <span class="row small">{{semaphore.crossroads.id}}-{{semaphore.semaphoreId}}</span>
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div id="container" class="container-fluid px-0">
+    <nav id="sidebar" class="col-2 d-md-block sidebar bg-dark collapse show width">
+        <div class="sidebar-sticky">
+            <div ng-view></div>
+        </div>
+    </nav>
+    <main id="main" role="main" class="col-md-10 ml-sm-auto px-0">
+        <div id="map"></div>
+    </main>
+</div>
+
+<script src="bower_components/jQuery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/leaflet/dist/leaflet.js"></script>
+
+<!-- Angular -->
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="bower_components/ng-stomp/dist/ng-stomp.standalone.min.js"></script>
+
+<!-- App -->
+<script type="text/javascript" src="app/app.cnfg.js"></script>
+<script type="text/javascript" src="app/app.ctrl.js"></script>
+<script type="text/javascript" src="app/app.drct.js"></script>
+<script type="text/javascript" src="app/app.fctr.js"></script>
+<script type="text/javascript" src="app/app.fltr.js"></script>
+<script type="text/javascript" src="app/app.rt.js"></script>
+<script type="text/javascript" src="app/app.srvc.js"></script>
+
+<!-- Configurations -->
+
+<!-- Controllers -->
+<script type="text/javascript" src="components/default/default.ctrl.js"></script>
+
+<script type="text/javascript" src="components/overview/overview.ctrl.js"></script>
+
+<script type="text/javascript" src="components/crossroads/create/crossroads.create.ctrl.js"></script>
+<script type="text/javascript" src="components/crossroads/details/crossroads.details.ctrl.js"></script>
+<script type="text/javascript" src="components/crossroads/edit/crossroads.edit.ctrl.js"></script>
+<script type="text/javascript" src="components/crossroads/list/crossroads.list.ctrl.js"></script>
+
+<!-- Services -->
+
+<script src="services/semaphore.srvc.js"></script>
+<script src="services/crossroads.srvc.js"></script>
+<script src="services/crossroads.leaderboard.srvc.js"></script>
+<script src="services/route.leaderboard.srvc.js"></script>
+<script src="services/socket.srvc.js"></script>
+
+<!-- Directives -->
+
+<!-- Factories -->
+<script type="text/javascript" src="factories/shared.fctr.js"></script>
+<script type="text/javascript" src="factories/config.fctr.js"></script>
+
+<!-- Filters -->
+<script type="text/javascript" src="filters/round.fltr.js"></script>
+
+<!-- Run -->
+<script type="text/javascript" src="app/app.js"></script>
+
+</body>
+</html>
