@@ -3,8 +3,8 @@
 angular.module('app.fctr').factory('configFactory', function () {
     const self = this;
 
-    self.SERVER_URI = 'http://www.jasmine.cf:32082/';
-    //self.SERVER_URI = 'http://localhost:8082/';
+    //self.SERVER_URI = 'http://www.jasmine.cf:32082/';
+    self.SERVER_URI = 'http://localhost:8082/';
 
     self.websocket_top_ten_crossroads_topic = "top-ten-crossroads-";
     self.websocket_outlier_crossroads_topic = "outlier-crossroads-";

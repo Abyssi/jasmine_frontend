@@ -213,7 +213,8 @@ angular.module('app.ctrl').controller('overviewController', ['$scope', '$timeout
                 stroke: false,
                 fillColor: '#00CCBE',
                 fillOpacity: 0.1,
-                radius: 500
+                radius: 500,
+                zIndexOffset: 1
             }).addTo(self.mapTopCrossroadsLayer);
 
             let marker = L.marker(target, {
@@ -221,7 +222,8 @@ angular.module('app.ctrl').controller('overviewController', ['$scope', '$timeout
                     iconUrl: 'assets/img/jasmine_icon.svg',
                     iconSize: [30, 30]
                 }),
-                opacity: 0.9
+                opacity: 0.9,
+                zIndexOffset: 1
             }).addTo(self.mapTopCrossroadsLayer);
 
             marker.on("click", function () {
@@ -240,14 +242,16 @@ angular.module('app.ctrl').controller('overviewController', ['$scope', '$timeout
             color: '#CC2E26',
             weight: 8,
             opacity: 0.2,
-            smoothFactor: 1
+            smoothFactor: 1,
+            zIndexOffset: 1
         }).addTo(self.mapTopRouteLayer);
 
         new L.Polyline(pointList, {
             color: '#CC2E26',
             weight: 3,
             opacity: 0.9,
-            smoothFactor: 1
+            smoothFactor: 1,
+            zIndexOffset: 1
         }).addTo(self.mapTopRouteLayer);
     };
 
@@ -260,7 +264,8 @@ angular.module('app.ctrl').controller('overviewController', ['$scope', '$timeout
                     iconUrl: 'assets/img/jasmine_icon_grey.svg',
                     iconSize: [30, 30]
                 }),
-                opacity: 0.9
+                opacity: 0.9,
+                zIndexOffset: 0
             }).addTo(self.mapOutlierCrossroadsLayer);
 
             marker.on("click", function () {

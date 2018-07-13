@@ -70,7 +70,7 @@
             <li class="side-item"
                 ng-repeat="crossroads in overviewController.topCrossroadsList">
                 <a class="nav-link side-link" href="#/crossroads/details/{{crossroads.id}}">
-                    <span class="small">{{crossroads.id}}</span>
+                    <span class="small">{{crossroads.id}}</span><br>
                     <span class="small">{{crossroads.averageSpeed | round:2}} km/h</span>
                 </a>
             </li>
@@ -86,7 +86,7 @@
             <li class="side-item"
                 ng-repeat="crossroads in overviewController.outlierCrossroadsList">
                 <a class="nav-link side-link" href="#/crossroads/details/{{crossroads.data.id}}">
-                    <span class="small">{{crossroads.data.id}}</span>
+                    <span class="small">{{crossroads.data.id}}</span><br>
                     <span class="small">{{crossroads.data.medianVehiclesCount | round:2}} cars</span>
                 </a>
             </li>
@@ -99,7 +99,7 @@
             <span>Top route</span>
         </h6>
         <ul class="nav flex-column border-bottom">
-            <li class="side-item" ng-repeat="route in overviewController.topRouteList">
+            <li ng-repeat="route in overviewController.topRouteList">
                 <ul class="nav flex-column border-bottom">
                     <li class="side-item" ng-repeat="semaphore in route">
                         <a class="nav-link side-link"

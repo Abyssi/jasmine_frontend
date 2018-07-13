@@ -44,7 +44,8 @@ angular.module('app.ctrl').controller('defaultController', ['$scope', '$timeout'
                 iconUrl: 'assets/img/jasmine_icon_warning.svg',
                 iconSize: [30, 30]
             }),
-            opacity: 0.9
+            opacity: 0.9,
+            zIndexOffset: 2
         });
         marker.addTo(self.mapDamagedSemaphoreLayer);
 
