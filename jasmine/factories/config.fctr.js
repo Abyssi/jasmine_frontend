@@ -19,10 +19,10 @@ angular.module('app.fctr').factory('configFactory', function () {
     //self.large_window = 1440000;
 
     // Real values
-    self.top_semaphore_route_window = 300000;
-    self.small_window = 900000;
-    self.medium_window = 3600000;
-    self.large_window = 86400000;
+    self.top_semaphore_route_window = 20000;
+    self.small_window = 60000;
+    self.medium_window = 240000;
+    self.large_window = 5760000;
 
     return self;
 });
